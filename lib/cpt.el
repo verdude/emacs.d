@@ -1,4 +1,3 @@
-;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
 (require 'cl)
 
 (setq user-init-file (concat home-dir "/init.el"))
@@ -11,6 +10,10 @@
 (straight-use-package 'editorconfig)
 (straight-use-package 'company)
 
+;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
+;; This is slightly modified version of the blog post.
+;; I am using straight.el instead of use-package and I have some
+;; additional keybindings.
 (defun rk/copilot-tab ()
   "Tab command that will complete with copilot if a completion is
 available. Otherwise will try company, yasnippet or normal
@@ -128,7 +131,7 @@ annoying, sometimes be useful, that's why this can be handly."
   (define-key copilot-mode-map (kbd "M-C-<down>") #'copilot-accept-completion-by-line)
 
   ;; global keybindings
-  (define-key global-map (kbd "M-C-<return>") #'rk/copilot-complete-or-accept)
+  (define-key global-map (kbd "M-j") #'rk/copilot-complete-or-accept)
   (define-key global-map (kbd "M-C-<escape>") #'rk/copilot-change-activation)
 
   ;; Do copilot-quit when pressing C-g
