@@ -9,6 +9,7 @@
 (straight-use-package 'dash)
 (straight-use-package 'editorconfig)
 (straight-use-package 'company)
+(straight-use-package 'use-package)
 
 ;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
 ;; This is slightly modified version of the blog post.
@@ -116,8 +117,6 @@ annoying, sometimes be useful, that's why this can be handy."
   (interactive)
   (setq rk/copilot-enable-for-org (not rk/copilot-enable-for-org))
   (message "copilot for org is %s" (if rk/copilot-enable-for-org "enabled" "disabled")))
-
-
 
 ;; load the copilot package
 (use-package copilot
