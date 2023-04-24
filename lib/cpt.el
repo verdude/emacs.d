@@ -1,3 +1,4 @@
+;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
 (require 'cl)
 
 (setq user-init-file (concat home-dir "/init.el"))
@@ -149,5 +150,3 @@ annoying, sometimes be useful, that's why this can be handly."
      ;; related code from this file, copilot does not need it.
      (require 'company)
      (global-copilot-mode)))
-
-(copilot-login)
