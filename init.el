@@ -79,10 +79,16 @@
   (reapply-themes))
 
 (global-set-key (kbd "C-x C-p") 'fzf-git)
+(global-set-key (kbd "C-x C-'") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
 (global-set-key (kbd "C-x C-n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-x o") 'switch-window)
+(global-set-key (kbd "C-x 4 0") 'switch-window-then-kill-buffer)
+(global-set-key (kbd "C-x 4 d") 'switch-window-then-dired)
+(global-set-key (kbd "C-x 4 f") 'switch-window-then-find-file)
+(global-set-key (kbd "C-x 4 C-f") 'switch-window-then-find-file)
+(global-set-key (kbd "C-x 0") 'switch-window-then-delete)
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-d") 'helm-browse-project)

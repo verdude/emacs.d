@@ -112,7 +112,7 @@ cleared, make sure the overlay doesn't come back too soon."
 
 (defun rk/copilot-toggle-for-org ()
   "Toggle copilot activation in org mode. It can sometimes be
-annoying, sometimes be useful, that's why this can be handly."
+annoying, sometimes be useful, that's why this can be handy."
   (interactive)
   (setq rk/copilot-enable-for-org (not rk/copilot-enable-for-org))
   (message "copilot for org is %s" (if rk/copilot-enable-for-org "enabled" "disabled")))
@@ -129,6 +129,7 @@ annoying, sometimes be useful, that's why this can be handly."
   (define-key copilot-mode-map (kbd "M-C-<prior>") #'copilot-previous-completion)
   (define-key copilot-mode-map (kbd "M-C-<right>") #'copilot-accept-completion-by-word)
   (define-key copilot-mode-map (kbd "M-C-<down>") #'copilot-accept-completion-by-line)
+  (define-key copilot-mode-map (kbd "C-x a b") #'copilot-next-completion)
 
   ;; global keybindings
   (define-key global-map (kbd "M-j") #'rk/copilot-complete-or-accept)
@@ -153,3 +154,5 @@ annoying, sometimes be useful, that's why this can be handly."
      ;; related code from this file, copilot does not need it.
      (require 'company)
      (global-copilot-mode)))
+
+(provide 'cpt.el)
