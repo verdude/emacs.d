@@ -52,7 +52,9 @@
 (straight-use-package 'panda-theme)
 (straight-use-package 'haskell-mode)
 (straight-use-package 'pyvenv)
-(straight-use-package 'elpy)
+;(straight-use-package 'elpy)
+(straight-use-package 'bufler)
+
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
@@ -84,7 +86,7 @@
   (setq custom-enabled-themes '(sanityinc-tomorrow-night))
   (reapply-themes))
 
-(global-set-key (kbd "C-x C-p") 'blink-search)
+(global-set-key (kbd "C-x C-p") 'fzf-git-files)
 (global-set-key (kbd "C-x C-'") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
@@ -104,6 +106,8 @@
 (global-set-key (kbd "C-x a |") 'darkroom-tentative-mode)
 
 (helm-mode 1)
+(setq helm-mode-fuzzy-match t)
+(setq helm-completion-in-region-fuzzy-match t)
 (setq tab-width 2)
 (setq org-todo-keywords '("MAYBE" "PLANNING" "WAITING" "DEFERRED" "TODO" "NEXT" "IN-PROGRESS" "CANCELED" "DONE"))
 (setq org-log-done 'note)
@@ -134,6 +138,9 @@
   (if (file-exists-p blink-search-path)
       (progn
         (add-to-list 'load-path blink-search-path)
+        (setq blink-search-search-backends
+              '("Buffer List" "Common Directory" "Recent File" "Find File" "Key Value" "Elisp Symbol" "IMenu"))
+        (global-set-key (kbd "C-x C-p") 'blink-search)
         (require 'blink-search))))
 
 (require 'cpt.el)
