@@ -52,6 +52,7 @@
 (straight-use-package 'panda-theme)
 (straight-use-package 'haskell-mode)
 (straight-use-package 'pyvenv)
+(straight-use-package 'elpy)
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
@@ -83,7 +84,7 @@
   (setq custom-enabled-themes '(sanityinc-tomorrow-night))
   (reapply-themes))
 
-(global-set-key (kbd "C-x C-p") 'fzf-git-files)
+(global-set-key (kbd "C-x C-p") 'blink-search)
 (global-set-key (kbd "C-x C-'") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
@@ -126,9 +127,13 @@
 (put 'set-goal-column 'disabled nil)
 
 (setq home-dir (expand-file-name "~"))
-(add-to-list 'load-path (concat home-dir "/.emacs.d/lib"))
+(add-to-list 'load-path (concat user-emacs-directory "/lib"))
+
+(let ((blink-search-path (concat user-emacs-directory "/blink-search")))
+  (if (file-exists-p blink-search-path)
+      (progn
+        (add-to-list 'load-path blink-search-path)
+        (require 'blink-search))))
 
 (require 'cpt.el)
-
-(use-package totp
-  :straight (:host github :repo "juergenhoetzel/emacs-totp" :files ("*.el")))
+(use-package totp :straight (:host github :repo "juergenhoetzel/emacs-totp" :files ("*.el")))
