@@ -137,4 +137,6 @@
         (require 'blink-search))))
 
 (require 'cpt.el)
+(require 'keychain-environment)
+(keychain-refresh-environment)
 (use-package totp :straight (:host github :repo "juergenhoetzel/emacs-totp" :files ("*.el")))
