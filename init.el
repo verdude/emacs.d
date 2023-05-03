@@ -4,6 +4,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+(custom-set-variables '(custom-file (expand-file-name "custom.el" user-emacs-directory)))
+(load-file custom-file)
+
 (defvar backup-directory-alist)
 (setq backup-directory-alist `(("." . "/tmp/.emacs/backups")))
 (defvar auto-save-default)
@@ -47,6 +50,8 @@
 (straight-use-package 'tommyh-theme)
 (straight-use-package 'diredfl)
 (straight-use-package 'panda-theme)
+(straight-use-package 'haskell-mode)
+(straight-use-package 'pyvenv)
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
@@ -78,7 +83,7 @@
   (setq custom-enabled-themes '(sanityinc-tomorrow-night))
   (reapply-themes))
 
-(global-set-key (kbd "C-x C-p") 'fzf-git)
+(global-set-key (kbd "C-x C-p") 'fzf-git-files)
 (global-set-key (kbd "C-x C-'") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
@@ -124,3 +129,6 @@
 (add-to-list 'load-path (concat home-dir "/.emacs.d/lib"))
 
 (require 'cpt.el)
+
+(use-package totp
+  :straight (:host github :repo "juergenhoetzel/emacs-totp" :files ("*.el")))

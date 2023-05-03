@@ -1,7 +1,5 @@
 (require 'cl)
 
-(setq user-init-file (concat home-dir "/init.el"))
-(setq user-emacs-directory (file-name-directory user-init-file))
 (setq package-user-dir (expand-file-name "elpa/" user-emacs-directory))
 
 ;; Dependencies
