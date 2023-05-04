@@ -86,7 +86,14 @@
   (setq custom-enabled-themes '(sanityinc-tomorrow-night))
   (reapply-themes))
 
-(global-set-key (kbd "C-x C-p") 'fzf-git-files)
+(defun fzf-fd ()
+  "Run fzf with fd which is like fzf-git but using fd instead of just fzf
+   so that the results do not include ignored files but they do include
+   untracked files."
+  (interactive)
+  (fzf--vcs-command "Git" ".git" "fd --color=never"))
+
+(global-set-key (kbd "C-x C-p") 'fzf-fd)
 (global-set-key (kbd "C-x C-'") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
@@ -98,6 +105,7 @@
 (global-set-key (kbd "C-x 4 C-f") 'switch-window-then-find-file)
 (global-set-key (kbd "C-x 0") 'switch-window-then-delete)
 
+(global-set-key (kbd "C-x C-b") 'bufler)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-d") 'helm-browse-project)
 (global-set-key (kbd "C-x C-r") 'helm-projects-history)
@@ -133,15 +141,6 @@
 
 (setq home-dir (expand-file-name "~"))
 (add-to-list 'load-path (concat user-emacs-directory "/lib"))
-
-(let ((blink-search-path (concat user-emacs-directory "/blink-search")))
-  (if (file-exists-p blink-search-path)
-      (progn
-        (add-to-list 'load-path blink-search-path)
-        (setq blink-search-search-backends
-              '("Buffer List" "Common Directory" "Recent File" "Find File" "Key Value" "Elisp Symbol" "IMenu"))
-        (global-set-key (kbd "C-x C-p") 'blink-search)
-        (require 'blink-search))))
 
 (require 'cpt.el)
 (require 'keychain-environment)
