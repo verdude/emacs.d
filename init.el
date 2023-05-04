@@ -37,7 +37,6 @@
 (straight-use-package 'terraform-mode)
 (straight-use-package 'go-mode)
 (straight-use-package 'darkroom)
-(straight-use-package 'fzf)
 (straight-use-package 'evil)
 (straight-use-package 'magit)
 (straight-use-package 'yaml-mode)
@@ -52,9 +51,13 @@
 (straight-use-package 'panda-theme)
 (straight-use-package 'haskell-mode)
 (straight-use-package 'pyvenv)
-;(straight-use-package 'elpy)
+;; (straight-use-package 'elpy)
 (straight-use-package 'bufler)
+;; (straight-use-package 'fzf)
 
+(straight-use-package
+ '(fzf :type git :host github :repo "bling/fzf.el"
+ :fork (:host github :repo "verdude/fzf.el")))
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
@@ -86,14 +89,7 @@
   (setq custom-enabled-themes '(sanityinc-tomorrow-night))
   (reapply-themes))
 
-(defun fzf-fd ()
-  "Run fzf with fd which is like fzf-git but using fd instead of just fzf
-   so that the results do not include ignored files but they do include
-   untracked files."
-  (interactive)
-  (fzf--vcs-command "Git" ".git" "fd --color=never"))
-
-(global-set-key (kbd "C-x C-p") 'fzf-fd)
+(global-set-key (kbd "C-x C-p") 'fzf-git-files)
 (global-set-key (kbd "C-x C-'") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
