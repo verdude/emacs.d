@@ -4,8 +4,20 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(custom-set-variables '(custom-file (expand-file-name "custom.el" user-emacs-directory)))
-(load-file custom-file)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(sanityinc-tomorrow-night))
+ '(fzf/git-files-args "--exclude-standard --cache --others")
+ '(tab-bar-show 1))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 (defvar backup-directory-alist)
 (setq backup-directory-alist `(("." . "/tmp/.emacs/backups")))
