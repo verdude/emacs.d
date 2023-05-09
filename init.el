@@ -65,11 +65,21 @@
 (straight-use-package 'pyvenv)
 ;; (straight-use-package 'elpy)
 (straight-use-package 'bufler)
+(straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-pyright)
+(straight-use-package 'lsp-ui)
+(straight-use-package 'company)
+(straight-use-package 'company-lsp)
+(straight-use-package 'company-box)
+(straight-use-package 'helm-lsp)
+(straight-use-package 'helm-company)
 ;; (straight-use-package 'fzf)
 
 (straight-use-package
  '(fzf :type git :host github :repo "bling/fzf.el"
- :fork (:host github :repo "verdude/fzf.el")))
+       :fork (:host github :repo "verdude/fzf.el")))
+
+(setq lsp-keymap-prefix "C-c l")
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
@@ -120,6 +130,7 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x RET RET") 'vterm)
 (global-set-key (kbd "C-x a |") 'darkroom-tentative-mode)
+(global-set-key (kbd "C-c l w s") 'lsp)
 
 (helm-mode 1)
 (setq helm-mode-fuzzy-match t)
