@@ -112,7 +112,7 @@
   (reapply-themes))
 
 (global-set-key (kbd "C-x C-p") 'fzf-git-files)
-(global-set-key (kbd "C-x C-'") 'fzf-git-grep)
+(global-set-key (kbd "C-x C-P") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
 (global-set-key (kbd "C-x C-n") 'display-line-numbers-mode)
