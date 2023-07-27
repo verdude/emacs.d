@@ -139,6 +139,9 @@
 (setq tab-width 2)
 (setq org-todo-keywords '("MAYBE" "PLANNING" "WAITING" "DEFERRED" "TODO" "NEXT" "IN-PROGRESS" "CANCELED" "DONE"))
 (setq org-log-done 'note)
+(setq org-src-tab-acts-natively t)
+(setq org-src-preserve-indentation nil)
+(setq org-edit-src-content-indentation 0)
 
 ;; Start off warm and fuzzy
 ;; courtesy of mr purcell
@@ -149,7 +152,7 @@
 (setq x-select-enable-clipboard t)
 (if (eq system-type 'gnu/linux)
     (set-frame-font "Hermit" nil t)
-  (set-face-attribute 'default nil :height 120))
+  (set-face-attribute 'default nil :height 140))
 
 (defun create-lang-repo (dirname)
   (make-directory dirname nil)
