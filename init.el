@@ -111,6 +111,16 @@
   (setq custom-enabled-themes '(sanityinc-tomorrow-night))
   (reapply-themes))
 
+(defun refresh-all-buffers ()
+  "Refresh all open buffers."
+  (interactive)
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
+        (revert-buffer t t t)
+        (message "Refreshed %s" buf)))))
+
+(global-set-key (kbd "C-x 7 r") 'refresh-all-buffers)
 (global-set-key (kbd "C-x C-p") 'fzf-git-files)
 (global-set-key (kbd "C-x C-]") 'fzf-git-grep)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
