@@ -9,7 +9,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(sanityinc-tomorrow-night))
  '(fzf/git-files-args "--exclude-standard --cache --others")
  '(tab-bar-show 1))
 (custom-set-faces
@@ -25,10 +24,12 @@
 (setq auto-save-default nil)
 (setq-default indent-tabs-mode nil)
 (setq use-short-answers t)
+(setq lsp-keymap-prefix "C-c l")
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq-default require-final-newline t)
+(setq native-comp-async-report-warnings-errors nil)
 
 ;; Straight
 (defvar bootstrap-version)
@@ -63,23 +64,20 @@
 (straight-use-package 'panda-theme)
 (straight-use-package 'haskell-mode)
 (straight-use-package 'pyvenv)
-;; (straight-use-package 'elpy)
 (straight-use-package 'bufler)
 (straight-use-package 'lsp-mode)
-(straight-use-package 'lsp-pyright)
 (straight-use-package 'lsp-ui)
 (straight-use-package 'company)
 (straight-use-package 'company-lsp)
 (straight-use-package 'company-box)
 (straight-use-package 'helm-lsp)
 (straight-use-package 'helm-company)
-;; (straight-use-package 'fzf)
+(straight-use-package 'lsp-pyright)
 
+;; (straight-use-package 'fzf)
 (straight-use-package
  '(fzf :type git :host github :repo "bling/fzf.el"
        :fork (:host github :repo "verdude/fzf.el")))
-
-(setq lsp-keymap-prefix "C-c l")
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
@@ -159,9 +157,6 @@
 
 (setq inhibit-startup-screen t)
 (setq x-select-enable-clipboard t)
-(if (eq system-type 'gnu/linux)
-    (set-frame-font "Hermit" nil t)
-  (set-face-attribute 'default nil :height 140))
 
 (defun create-lang-repo (dirname)
   (make-directory dirname nil)
@@ -177,4 +172,15 @@
 (require 'cpt.el)
 (require 'keychain-environment)
 (keychain-refresh-environment)
-(use-package totp :straight (:host github :repo "juergenhoetzel/emacs-totp" :files ("*.el")))
+;; (use-package totp :straight (:host github :repo "juergenhoetzel/emacs-totp" :files ("*.el")))
+
+(defun font-size ()
+  (interactive)
+  (if (eq system-type 'gnu/linux)
+      (let ()
+      (set-frame-font "Hermit" nil t)
+      (set-face-attribute 'default nil :height 160)
+      (message "Rinux"))
+    (set-face-attribute 'default nil :height 140)))
+(add-hook 'emacs-startup-hook 'font-size)
+(add-hook 'python-mode (lambda () (require 'lsp-pyright) (lsp)))
