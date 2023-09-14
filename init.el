@@ -1,5 +1,6 @@
 (setq package-enable-at-startup t)
 (setq vc-follow-symlinks t)
+(setq find-file-visit-truename t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -24,7 +25,6 @@
 (setq auto-save-default nil)
 (setq-default indent-tabs-mode nil)
 (setq use-short-answers t)
-(setq lsp-keymap-prefix "C-c l")
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -73,7 +73,6 @@
 (straight-use-package 'helm-lsp)
 (straight-use-package 'helm-company)
 (straight-use-package 'lsp-pyright)
-
 ;; (straight-use-package 'fzf)
 (straight-use-package
  '(fzf :type git :host github :repo "bling/fzf.el"
@@ -158,6 +157,9 @@
 (setq inhibit-startup-screen t)
 (setq x-select-enable-clipboard t)
 
+(setq lsp-keymap-prefix "C-c l")
+(setenv "WORKON_HOME" "~/.pyenv/versions")
+
 (defun create-lang-repo (dirname)
   (make-directory dirname nil)
   (magit-init dirname)
@@ -183,4 +185,4 @@
       (message "Rinux"))
     (set-face-attribute 'default nil :height 140)))
 (add-hook 'emacs-startup-hook 'font-size)
-(add-hook 'python-mode (lambda () (require 'lsp-pyright) (lsp)))
+(add-hook 'python-mode-hook #'lsp)
