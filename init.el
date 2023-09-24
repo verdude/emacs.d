@@ -158,7 +158,7 @@
               (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!!\n\n"))
 
 (setq inhibit-startup-screen t)
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
 
 (setq lsp-keymap-prefix "C-c l")
 (setenv "WORKON_HOME" "~/.pyenv/versions")
