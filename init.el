@@ -73,6 +73,9 @@
 (straight-use-package 'helm-lsp)
 (straight-use-package 'helm-company)
 (straight-use-package 'lsp-pyright)
+(straight-use-package 'lsp-java)
+(straight-use-package 'yasnippet)
+(straight-use-package 'flycheck)
 ;; (straight-use-package 'fzf)
 (straight-use-package
  '(fzf :type git :host github :repo "bling/fzf.el"
@@ -186,3 +189,23 @@
     (set-face-attribute 'default nil :height 140)))
 (add-hook 'emacs-startup-hook 'font-size)
 (add-hook 'python-mode-hook #'lsp)
+
+(defun java-mode-setup ()
+  (setq c-basic-offset 2
+        tab-width 2
+        indent-tabs-mode t
+        lsp-java-vmargs
+        (list
+         "-Xmx3G"
+         "-XX:+UseG1GC"
+         "-XX:+UseStringDeduplication"
+         "-Djava.awt.headless=true"
+         (concat "-javaagent:" home-dir "/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar")
+         ))
+  (yas-minor-mode)
+  (flycheck-mode)
+  (auto-fill-mode)
+  (subword-mode)
+  (lsp))
+
+(add-hook 'java-mode-hook #'java-mode-setup)
