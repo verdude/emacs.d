@@ -158,6 +158,7 @@
               (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!!\n\n"))
 
 (setq inhibit-startup-screen t)
+(setq ring-bell-function 'ignore)
 (setq select-enable-clipboard t)
 
 (setq lsp-keymap-prefix "C-c l")
