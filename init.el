@@ -74,8 +74,13 @@
 (straight-use-package 'helm-company)
 (straight-use-package 'lsp-pyright)
 (straight-use-package 'yasnippet)
-(straight-use-package 'fzf)
+;; (straight-use-package 'fzf)
 
+(straight-use-package
+ '(fzf :type git :host github :repo "bling/fzf.el"
+       :fork (:host github :repo "verdude/fzf.el")))
+
+(setq fzf/grep-command "rg --no-heading -nh")
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
 (diredp-toggle-find-file-reuse-dir t)
@@ -167,6 +172,8 @@
   (switch-to-buffer-other-frame (create-file-buffer "grammar.bnf")))
 
 (put 'set-goal-column 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 (setq home-dir (expand-file-name "~"))
 (add-to-list 'load-path (concat user-emacs-directory "/lib"))
