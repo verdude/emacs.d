@@ -178,16 +178,14 @@
 (setq home-dir (expand-file-name "~"))
 (add-to-list 'load-path (concat user-emacs-directory "/lib"))
 
-(require 'cpt.el)
 (require 'keychain-environment)
 (keychain-refresh-environment)
-;; (use-package totp :straight (:host github :repo "juergenhoetzel/emacs-totp" :files ("*.el")))
 
+(set-frame-font "Hermit" nil t)
 (defun font-size ()
   (interactive)
   (if (eq system-type 'gnu/linux)
       (let ()
-      (set-frame-font "Hermit" nil t)
       (set-face-attribute 'default nil :height 160)
       (message "Rinux"))
     (set-face-attribute 'default nil :height 140)))
